@@ -1,0 +1,262 @@
+/* TechFiesta site theme: white paper, navy ink, royal blue, black pixel blocks, hard offset shadows. */
+:root {
+  --paper: #ffffff;
+  --ink: #050530;
+  --blue: #0000c8;
+  --soft: #eef0ff;
+  --muted: #4a4d80;
+  --pixel: 'Pixelify Sans', monospace;
+  --body: 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* 1rem = 16px on a 1080x1920 screen; everything scales with the viewport. */
+html {
+  font-size: min(1.4815vw, 0.8333vh);
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  font-family: var(--body);
+  color: var(--ink);
+}
+.screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 3rem 1.8rem;
+  box-sizing: border-box;
+  background: var(--paper);
+}
+.screen > * {
+  position: relative;
+}
+
+/* pixel blocks, as on the site */
+.px {
+  position: absolute !important;
+  width: 12rem;
+  height: 12rem;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.px-tl {
+  top: 0;
+  left: 0;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 0 / 4rem 8rem,
+    linear-gradient(var(--ink), var(--ink)) 0 4rem / 8rem 4rem,
+    linear-gradient(var(--blue), var(--blue)) 8rem 0 / 4rem 4rem;
+  background-repeat: no-repeat;
+  height: 8rem;
+  opacity: 1;
+}
+.px-br {
+  right: 0;
+  bottom: 0;
+  height: 8rem;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 100% 0 / 4rem 8rem,
+    linear-gradient(var(--ink), var(--ink)) 100% 4rem / 8rem 4rem,
+    linear-gradient(var(--blue), var(--blue)) 0 4rem / 4rem 4rem;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+.px-tl, .px-br { z-index: 0; }
+.screen > :not(.px) { z-index: 1; }
+
+/* header */
+.bar {
+  padding-left: 14rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 0.3rem solid var(--ink);
+  margin: 0 -3rem;
+  padding-right: 3rem;
+}
+.mark {
+  height: 6.4rem;
+}
+.tf-name {
+  font-family: var(--pixel);
+  font-weight: 700;
+  font-size: 4.4rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tf-sub {
+  margin-top: 0.4rem;
+  font-family: var(--pixel);
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+.title {
+  margin: 2.2rem 0 1.8rem;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--pixel);
+  font-weight: 600;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.title span {
+  font-size: 8.4rem;
+}
+.title em {
+  font-style: normal;
+  font-size: 5.4rem;
+  color: var(--blue);
+}
+.cols {
+  display: grid;
+  grid-template-columns: 11rem 1fr 18rem;
+  padding: 0 1rem 0.8rem;
+  border-bottom: 0.2rem solid var(--ink);
+  font-family: var(--pixel);
+  font-size: 1.5rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.cols span:nth-child(2) { padding-left: 0.5rem; }
+.cols span:last-child { text-align: center; }
+
+/* rows */
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.4rem 0.8rem 0 0;
+  animation: pagein 0.6s ease;
+}
+@keyframes pagein {
+  from { opacity: 0; transform: translateY(1.5rem); }
+}
+.row {
+  flex: 0 0 6.8rem;
+  display: grid;
+  grid-template-columns: 11rem 1fr 18rem;
+  align-items: stretch;
+  background: var(--paper);
+  border: 0.22rem solid var(--ink);
+  box-shadow: 0.7rem 0.7rem 0 var(--blue);
+  min-width: 0;
+}
+.row-pos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: #fff;
+}
+.row-pos b { font-size: 4.4rem; font-weight: 700; }
+.row-pos sup { font-size: 1.4rem; margin: -1.8rem 0 0 0.2rem; }
+.row.podium-1 { background: var(--blue); color: #fff; box-shadow: 0.7rem 0.7rem 0 var(--ink); }
+.row.podium-1 .row-pos { background: #fff; color: var(--blue); }
+.row.podium-1 .row-college { color: #dfe2ff; }
+.row.podium-1 .row-time { background: #fff; color: var(--blue); border-color: #fff; }
+.row.podium-2 .row-pos,
+.row.podium-3 .row-pos { background: var(--blue); }
+.row.podium-2, .row.podium-3 { background: var(--soft); }
+.row.waiting, .row.dnf { background: #f6f6fb; }
+.row.waiting .row-pos, .row.dnf .row-pos { background: #8b8db5; }
+.row-team {
+  padding: 0 1.6rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.row-name {
+  font-weight: 700;
+  font-size: 2.9rem;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.row-sub { margin-top: 0.2rem; font-size: 1.35rem; }
+.row-college {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row-sub .ant-tag {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.7rem;
+  border-radius: 0;
+  font-weight: 600;
+}
+.row-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.9rem 1rem 0.9rem 0;
+  border: 0.2rem solid var(--ink);
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 2.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.empty {
+  margin: auto;
+  font-family: var(--pixel);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+/* footer */
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  padding-right: 11rem;
+}
+.logo-acm { height: 6.4rem; }
+.foot-mid { text-align: center; flex: 1; }
+.tagline {
+  font-family: var(--pixel);
+  font-weight: 700;
+  font-size: 2.3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.rule { font-size: 1.3rem; color: var(--muted); }
+.dots { margin-top: 0.5rem; display: flex; gap: 0.6rem; justify-content: center; }
+.dots i { width: 1rem; height: 1rem; background: #c3c6ec; }
+.dots i.on { background: var(--blue); }
+.live {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--pixel);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  color: #d00;
+}
+.live i { width: 1rem; height: 1rem; background: currentColor; }
+.live.on { color: #0a8a3c; }
+.live.on i { animation: pulse 1.6s infinite; }
+@keyframes pulse { 50% { opacity: 0.25; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .list, .live i { animation: none; }
+}
